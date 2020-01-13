@@ -103,8 +103,7 @@ function isValidCSVPath(path) {
     return false
 }
 
-async function getSheet(pathOrID) {
-    console.info(`Getting spreadsheet "${pathOrID}"...`)
+async function getSheet(pathOrID="") {
     if (isValidCSVPath(pathOrID)) {
         console.info('Parsing csv file...')
         let file
@@ -120,9 +119,11 @@ async function getSheet(pathOrID) {
     const key = getApiKeyOrCrash()
 
     if (!pathOrID) {
+        // Assuming that, when saving the sheet, a new one will be created
         return []
     }
 
+    console.info('Fetching remote spreadsheet')
     const sheetURL = `${sheetsAPIBase}/${pathOrID}/values/A1:X100000?key=${key}`
     const ret = await request(sheetURL, { json: true }).catch(() => null)
     if (!ret || !ret.values) {
@@ -141,7 +142,7 @@ async function getSheet(pathOrID) {
     return []
 }
 
-async function saveSheet(path, array) {
+async function saveSheet(path="", array) {
     console.info('Saving spreadsheet...')
     if (isValidCSVPath(path)) {
         console.info('Writing csv to:', path)
@@ -155,6 +156,7 @@ async function saveSheet(path, array) {
     if (!pathOrID) {
         // Create sheet
         // Save sheet
+        throw new Error('Remote spreadsheet creation not implemented')
         return
     }
 
