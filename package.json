@@ -1,0 +1,16 @@
+{
+  "name": "i18n-spreadsheet-sync",
+  "version": "1.0.0",
+  "description": "Sync your i18n JSON files both ways with a Google Spreadsheet or CSV file",
+  "main": "index.js",
+  "repository": "https://github.com/VaguelySerious/i18n-spreadsheet-sync",
+  "author": "Peter Wielander",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "csv-parse": "^4.8.2",
+    "csv-stringify": "^5.3.3",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.8"
+  }
+}
